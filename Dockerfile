@@ -1,5 +1,4 @@
-# Estágio de construção
-FROM maven:3.8.6-openjdk-21-slim AS build
+FROM openjdk:21-slim
 
 WORKDIR /app
 
@@ -8,7 +7,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Construa o JAR
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Estágio de execução
 FROM openjdk:21-slim
@@ -19,4 +18,4 @@ WORKDIR /app
 COPY --from=build /app/target/football-prediction-backend-0.0.1-SNAPSHOT.jar app.jar
 
 # Comando para executar a aplicação Spring Boot
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
