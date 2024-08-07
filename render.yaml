@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: football-prediction-backend
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    buildCommand: |
+      mvn clean package
+    startCommand: "java -jar app.jar"
+    ports:
+      - port: 8080
