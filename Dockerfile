@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn clean install -DskipTests
 
 # Estágio de execução
-FROM openjdk:21-slim
+FROM openjdk:17-ea-10-jdk-slim
 
 # Configuração do diretório de trabalho dentro do contêiner
 WORKDIR /app
