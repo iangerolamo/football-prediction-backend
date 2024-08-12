@@ -255,6 +255,18 @@ INSERT INTO Match (date, competition, home_team, away_team, home_team_score, awa
 ('2024-08-03', 'Brasileirao', 'Criciúma', 'Atlético-MG', 2, 1),
 ('2024-08-03', 'Brasileirao', 'Vasco', 'Red Bull Bragantino', 2, 2),
 ('2024-08-03', 'Brasileirao', 'Vitória', 'Cuiabá', 1, 0);
+-- rodada 22 (Brasileirao Série A)
+INSERT INTO Match (date, competition, home_team, away_team, home_team_score, away_team_score) VALUES
+('2024-08-11 19:00', 'Brasileirao', 'Internacional', 'Athletico-PR', 2, 2),
+('2024-08-11 16:00', 'Brasileirao', 'Bahia', 'Vitória', 2, 0),
+('2024-08-11 16:00', 'Brasileirao', 'Flamengo', 'Palmeiras', 1, 1),
+('2024-08-11 16:00', 'Brasileirao', 'São Paulo', 'Atlético-GO', 1, 0),
+('2024-08-11 11:00', 'Brasileirao', 'Juventude', 'Botafogo', 3, 2),
+('2024-08-10 21:30', 'Brasileirao', 'Corinthians', 'Red Bull Bragantino', 1, 1),
+('2024-08-10 21:30', 'Brasileirao', 'Cruzeiro', 'Atlético-MG', 0, 0),
+('2024-08-10 21:30', 'Brasileirao', 'Vasco', 'Fluminense', 2, 0),
+('2024-08-10 19:00', 'Brasileirao', 'Cuiabá', 'Grêmio', 1, 3),
+('2024-08-10 16:00', 'Brasileirao', 'Fortaleza', 'Criciúma', 1, 0);
 
 
 

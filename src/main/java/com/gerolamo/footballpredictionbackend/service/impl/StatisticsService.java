@@ -340,15 +340,6 @@ public class StatisticsService implements IStatisticsService {
         statistics.setGoalsAgainst(totalGoalsConceded);
 
 
-        List<Ranking> rankingList = rankingRepository.findAll(); // Busca todos os rankings da tabela
-
-        for (Ranking ranking : rankingList) {
-            if (ranking.getTeams().equals(teamName)) {
-                int position = Math.toIntExact(ranking.getId());
-                statistics.setPosition(position);
-            }
-        }
-
         return statistics;
     }
 
