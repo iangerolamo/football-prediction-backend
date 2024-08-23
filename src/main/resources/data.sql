@@ -7,8 +7,6 @@ create table Match (
     home_team_score INT NOT NULL,
     away_team_score INT NOT NULL
 );
-
-
 -- rodada 1 (Brasileirao Série A)
 INSERT INTO Match (date, competition, home_team, away_team, home_team_score, away_team_score) VALUES
 ('2024-04-14', 'Brasileirao', 'Vitória', 'Palmeiras', 0, 1),

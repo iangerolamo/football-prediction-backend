@@ -8,7 +8,6 @@ import com.gerolamo.footballpredictionbackend.service.IMatchService;
 import com.gerolamo.footballpredictionbackend.service.IRankingService;
 import com.gerolamo.footballpredictionbackend.service.IStatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -372,11 +371,6 @@ public class StatisticsService implements IStatisticsService {
         ranking.setPointsEfficiencyPercentage(stats.getPointsEfficiencyPercentage());
         return ranking;
     }
-
-
-
-
-
 
     BigDecimal calculatePercentage(int value, int total) {
         return BigDecimal.valueOf(value)
