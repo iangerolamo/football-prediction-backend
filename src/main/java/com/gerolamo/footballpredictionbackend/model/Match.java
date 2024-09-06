@@ -14,10 +14,8 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
     private String homeTeam;
 
-    @JsonIgnore
     private String awayTeam;
 
     private LocalDate date;

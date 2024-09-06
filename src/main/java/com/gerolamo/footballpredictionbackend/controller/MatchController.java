@@ -52,5 +52,26 @@ public class MatchController {
     public List<Match> getAllMatchesByCompetition(@RequestParam("competition") String competition) {
         return matchService.getAllMatchesByCompetition(competition);
     }
+
+    @GetMapping("/lastFive")
+    public List<Match> getLastFiveMatchesByCompetition(
+            @RequestParam("competition") String competition,
+            @RequestParam("team") String team) {
+        return matchService.getLastFiveMatchesByCompetition(team, competition);
+    }
+
+    @GetMapping("/lastFiveHome")
+    public List<Match> getLastFiveHomeMatchesByTeamAndCompetition(
+            @RequestParam("competition") String competition,
+            @RequestParam("team") String team) {
+        return matchService.getLastFiveHomeMatchesByTeamAndCompetition(team, competition);
+    }
+
+    @GetMapping("/lastFiveAway")
+    public List<Match> getLastFiveAwayMatchesByTeamAndCompetition(
+            @RequestParam("competition") String competition,
+            @RequestParam("team") String team) {
+        return matchService.getLastFiveAwayMatchesByTeamAndCompetition(team, competition);
+    }
 }
 

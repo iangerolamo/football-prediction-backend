@@ -1,8 +1,8 @@
 package com.gerolamo.footballpredictionbackend.service.impl;
 
 import com.gerolamo.footballpredictionbackend.model.Match;
-import com.gerolamo.footballpredictionbackend.model.Ranking;
 import com.gerolamo.footballpredictionbackend.model.Statistics;
+import com.gerolamo.footballpredictionbackend.model.dto.LastFiveMatchResultsDTO;
 import com.gerolamo.footballpredictionbackend.repository.RankingRepository;
 import com.gerolamo.footballpredictionbackend.service.IMatchService;
 import com.gerolamo.footballpredictionbackend.service.IRankingService;
@@ -338,38 +338,67 @@ public class StatisticsService implements IStatisticsService {
         statistics.setGoalsScored(totalGoalsScored);
         statistics.setGoalsAgainst(totalGoalsConceded);
 
+        List<LastFiveMatchResultsDTO> lastFiveStatisticsByTeam = getLastFiveStatisticsByTeam(teamName, type);
+
+        statistics.setLastFiveMatchByTeam(lastFiveStatisticsByTeam);
+
 
         return statistics;
     }
 
-    public List<Ranking> getRankingsForCompetition(String competition) {
-        List<String> teams = matchService.getAllTeamsByCompetition(competition);
-        List<Ranking> rankings = new ArrayList<>();
+    public List<LastFiveMatchResultsDTO> getLastFiveStatisticsByTeam(String teamName, String type) {
+        List<Match> matches = new ArrayList<>();
 
-        for (String team : teams) {
-            Statistics stats = getStatisticsByTeam(team, "all");
-            Ranking ranking = createRanking(team, stats);
-            rankings.add(ranking);
+        switch (type) {
+            case "home":
+                matches = matchService.getLastFiveHomeMatchesByTeamAndCompetition(teamName, "Brasileirao");
+                break;
+            case "away":
+                matches = matchService.getLastFiveAwayMatchesByTeamAndCompetition(teamName, "Brasileirao");
+                break;
+            case "all":
+            default:
+                matches = matchService.getLastFiveMatchesByCompetition(teamName, "Brasileirao");
+                break;
         }
 
-        return rankings;
-    }
+        int wins = 0;
+        int draws = 0;
+        int losses = 0;
 
-    public Ranking createRanking(String team, Statistics stats) {
-        Ranking ranking = new Ranking();
-        ranking.setTeams(team);
-        int totalPoints = (stats.getWins() * 3 + stats.getDraw() * 1);
-        ranking.setPoints(totalPoints);
-        int totalMatches = stats.getWins() + stats.getLosses() + stats.getDraw();
-        ranking.setMatchesPlayed(totalMatches);
-        ranking.setWins(stats.getWins());
-        ranking.setDraws(stats.getDraw());
-        ranking.setLosses(stats.getLosses());
-        ranking.setGoalsScored(stats.getGoalsScored());
-        ranking.setGoalsAgainst(stats.getGoalsAgainst());
-        ranking.setGoalsDifference(stats.getGoalsDifference());
-        ranking.setPointsEfficiencyPercentage(stats.getPointsEfficiencyPercentage());
-        return ranking;
+        List<LastFiveMatchResultsDTO> lastFiveMatchResults = new ArrayList<>();
+
+        for (Match match : matches) {
+            LastFiveMatchResultsDTO lastMatch = new LastFiveMatchResultsDTO();
+
+            // Contabiliza vitórias, empates e derrotas
+            if (match.getHomeTeam().equals(teamName)) {
+                if (match.getHomeTeamScore() > match.getAwayTeamScore()) {
+                    lastMatch.setResult("win");
+                    wins++;
+                } else if (match.getHomeTeamScore() < match.getAwayTeamScore()) {
+                    lastMatch.setResult("loss");
+                    losses++;
+                } else {
+                    lastMatch.setResult("draw");
+                    draws++;
+                }
+            } else if (match.getAwayTeam().equals(teamName)) {
+                if (match.getAwayTeamScore() > match.getHomeTeamScore()) {
+                    lastMatch.setResult("win");
+                    wins++;
+                } else if (match.getAwayTeamScore() < match.getHomeTeamScore()) {
+                    lastMatch.setResult("loss");
+                    losses++;
+                } else {
+                    lastMatch.setResult("draw");
+                    draws++;
+                }
+            }
+            lastFiveMatchResults.add(lastMatch);
+        }
+
+        return lastFiveMatchResults;
     }
 
     BigDecimal calculatePercentage(int value, int total) {

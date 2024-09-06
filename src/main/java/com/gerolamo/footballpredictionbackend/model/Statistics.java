@@ -1,27 +1,21 @@
 package com.gerolamo.footballpredictionbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.gerolamo.footballpredictionbackend.model.dto.LastFiveMatchResultsDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
 public class Statistics {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int position;
+    private List<LastFiveMatchResultsDTO> lastFiveMatchByTeam;
     private int wins;
     private BigDecimal winsPercentage;
     private int losses;

@@ -58,4 +58,25 @@ public class MatchService implements IMatchService {
     public List<Match> getAllMatchesByCompetition(String competition) {
         return matchRepository.findAllMatchesByCompetition(competition);
     }
+
+    @Override
+    public List<Match> getLastFiveMatchesByCompetition(String team, String competition) {
+        List<Match> lastFiveMatches = matchRepository.findLastFiveMatchesByTeamAndCompetition(team, competition);
+
+        return lastFiveMatches;
+    }
+
+    @Override
+    public List<Match> getLastFiveHomeMatchesByTeamAndCompetition(String team, String competition) {
+        List<Match> lastFiveMatches = matchRepository.findLastFiveHomeMatchesByTeamAndCompetition(team, competition);
+
+        return lastFiveMatches;
+    }
+
+    @Override
+    public List<Match> getLastFiveAwayMatchesByTeamAndCompetition(String team, String competition) {
+        List<Match> lastFiveMatches = matchRepository.findLastFiveAwayMatchesByTeamAndCompetition(team, competition);
+
+        return lastFiveMatches;
+    }
 }

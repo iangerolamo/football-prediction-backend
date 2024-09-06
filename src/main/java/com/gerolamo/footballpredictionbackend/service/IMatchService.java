@@ -13,4 +13,9 @@ public interface IMatchService {
     List<Match> getMatchesByAwayTeam(String teamName);
     List<String> getAllTeamsByCompetition(String competition);
     List<Match> getAllMatchesByCompetition(String competition);
+    List<Match> getLastFiveMatchesByCompetition(String team, String competition);
+
+    List<Match> getLastFiveHomeMatchesByTeamAndCompetition(String team, String competition);
+
+    List<Match> getLastFiveAwayMatchesByTeamAndCompetition(String team, String competition);
 }
