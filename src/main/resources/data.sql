@@ -312,4 +312,15 @@ INSERT INTO Match (date, competition, home_team, away_team, home_team_score, awa
 ('2024-09-14', 'Brasileirao', 'Atlético-GO', 'Vitória', 0, 2),
 ('2024-09-11', 'Brasileirao', 'Internacional', 'Fortaleza', 2, 1),
 ('2024-09-05', 'Brasileirao', 'Cuiabá', 'Juventude', 0, 0);
+INSERT INTO Match (date, competition, home_team, away_team, home_team_score, away_team_score) VALUES
+('2024-09-22', 'Brasileirao', 'Criciúma', 'Athletico-PR', 0, 0),
+('2024-09-22', 'Brasileirao', 'Cuiabá', 'Cruzeiro', 0, 0),
+('2024-09-22', 'Brasileirao', 'Grêmio', 'Flamengo', 3, 2),
+('2024-09-22', 'Brasileirao', 'São Paulo', 'Internacional', 1, 3),
+('2024-09-22', 'Brasileirao', 'Atlético-MG', 'Red Bull Bragantino', 3, 0),
+('2024-09-22', 'Brasileirao', 'Vasco', 'Palmeiras', 0, 1),
+('2024-09-21', 'Brasileirao', 'Fortaleza', 'Bahia', 4, 1),
+('2024-09-21', 'Brasileirao', 'Fluminense', 'Botafogo', 0, 1),
+('2024-09-21', 'Brasileirao', 'Corinthians', 'Atlético-GO', 3, 0),
+('2024-09-21', 'Brasileirao', 'Vitória', 'Juventude', 1, 0);
 
